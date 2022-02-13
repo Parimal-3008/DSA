@@ -58,18 +58,18 @@ class Solution {
     }
     public static boolean check(int i, boolean[] visited,ArrayList<ArrayList<Integer>> l )
     {
-        Queue<Edge> q = new LinkedList<>();
-        q.add(new Edge(i,-1));
+        Stack<Edge> q = new Stack<>();
+        q.push(new Edge(i,-1));
         while(!q.isEmpty())
         {
-            Edge e = q.poll();
+            Edge e = q.pop();
             visited[e.n]=true;
             for(int j: l.get(e.n))
             {
                 if(!visited[j])
                 {
-                    q.add(new Edge(j,e.n));
-                    
+                    q.push(new Edge(j,e.n));
+                    visited[e.n]=true;
                 }
                 else
                 {
