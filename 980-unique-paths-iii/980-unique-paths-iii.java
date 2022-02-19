@@ -15,7 +15,7 @@ class Solution {
                     tot--;
             }
         }
-        System.out.println(s1+" "+e1+" "+s2+" "+e2+" "+tot);
+        //System.out.println(s1+" "+e1+" "+s2+" "+e2+" "+tot);
         boolean[][] vis= new boolean[m][n];
         call(arr,s1,e1,s2,e2,vis,tot);
         return count;
