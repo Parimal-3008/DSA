@@ -16,6 +16,8 @@ class Solution {
             return;
         for(int j=i;j<=9;j++)
         {
+            if(n<j)
+                return;
             temp.add(j);
             call(j+1,k-1,n-j,new LinkedList<>(temp),list);
             temp.remove(temp.size()-1);
