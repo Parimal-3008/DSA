@@ -48,13 +48,7 @@ class Solution {
                 return false;
         }
         int x,y =0;int  n= arr.length;
-        x=p;y=q;
-        while(x<n&&y<n)
-        {
-            if(arr[x][y]=='Q'&&x!=p&&y!=q)
-                return false;
-            x++;y++;
-        }
+        
         x=p;y=q;
         while(x>=0&&y<n)
         {
@@ -69,14 +63,7 @@ class Solution {
                 return false;
             x--;y--;
         }
-         x=p;y=q;
-        while(x<n&&y>=0)
-        {
-            if(arr[x][y]=='Q'&&x!=p&&y!=q)
-                return false;
-            x++;y--;
-
-        }
+     
         return true;
     }
 }
