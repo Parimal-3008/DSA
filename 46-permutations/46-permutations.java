@@ -1,29 +1,31 @@
 class Solution {
     public List<List<Integer>> permute(int[] arr) {
          List<List<Integer>> list = new LinkedList<>();
-         boolean vis[]= new boolean[arr.length];
-        Arrays.fill(vis,false);
-        call(arr,list,vis,0,new LinkedList<>());
+        call(arr,list,0);
         return list;
         
     }
-    public void call(int[] arr, List<List<Integer>> list,boolean[] vis,int i, List<Integer> temp )
-    {
-       
-          if(temp.size()==arr.length)
+    public void call(int[] arr, List<List<Integer>> list,int i)
+    {      
+          if(i==arr.length)
           {
-             list.add(new LinkedList<>(temp));   
+              List<Integer> l = new LinkedList<>();
+             for(int j:arr)
+                 l.add(j);
+              list.add(l);
               return;
-          }
-        
-        for(int j=0;j<arr.length;j++)
+          }       
+        for(int j=i;j<arr.length;j++)
         {
-            if(vis[j]) continue;
-            temp.add(arr[j]);
-            vis[j]=true;
-            call(arr,list,vis,j+1,new LinkedList<>(temp));
-            vis[j]=false;
-            temp.remove(temp.size()-1);
+            swap(arr,i,j);
+            call(arr,list,i+1);
+             swap(arr,i,j);
         }
+    }
+    public void swap(int arr[],int i, int j)
+    {
+        int temp = arr[i];
+        arr[i]=arr[j];
+        arr[j]=temp;
     }
 }
