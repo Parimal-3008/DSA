@@ -27,7 +27,7 @@ class Solution {
             {
                 int a = Integer.parseInt(arr1[i]);
                 int b = Integer.parseInt(arr2[i]);
-                 System.out.println(arr1[i]+" "+arr2[i]);
+                 //System.out.println(arr1[i]+" "+arr2[i]);
                 if(a>b)
                     return 1;
                 else if(a<b)
