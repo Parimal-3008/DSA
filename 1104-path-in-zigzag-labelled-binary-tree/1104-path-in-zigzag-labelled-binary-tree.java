@@ -1,7 +1,7 @@
 class Solution {
     public List<Integer> pathInZigZagTree(int n) {
         List<Integer> list = new LinkedList<>();   
-        list.add(1);
+        //list.add(1);
         
         int arr[] = new int[21];
          arr[0]=1;
@@ -25,7 +25,8 @@ class Solution {
         //     list.add(3);
         if(n!=1)
         list.add(n);
-        Collections.sort(list);
+        list.add(1);
+        Collections.reverse(list);
         return list;
     }
 }
