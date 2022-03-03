@@ -31,24 +31,18 @@ public class Codec {
     public TreeNode deserialize(String str1) {
         if(str1.equals(""))
             return null;
-        String[] s= str1.split(" ");
-        int[] arr= new int[s.length];
-        for(int i=0;i<s.length;i++)
-           {
-            arr[i]=Integer.parseInt(s[i]);
-            //System.out.print(arr[i]+",");
-           }
-        return call2(arr,0,s.length-1);
+        String[] arr= str1.split(" ");        
+        return call2(arr,0,arr.length-1);
     }
-    public TreeNode call2(int[] arr, int s1, int e1)
+    public TreeNode call2(String[] arr, int s1, int e1)
     {
         if(s1>e1)
             return null;
         if(s1==e1)
-            return new TreeNode(arr[s1]);
-        TreeNode temp = new TreeNode(arr[s1]);
+            return new TreeNode(Integer.parseInt(arr[s1]));
+        TreeNode temp = new TreeNode(Integer.parseInt(arr[s1]));
         for(int j=s1+1;j<=e1;j++)
-            if(arr[j]>arr[s1])
+            if(Integer.parseInt(arr[j])>Integer.parseInt(arr[s1]))
             {
                 temp.left = call2(arr,s1+1,j-1);
                 temp.right = call2(arr,j,e1);
