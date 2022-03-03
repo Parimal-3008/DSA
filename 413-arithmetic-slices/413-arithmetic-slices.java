@@ -22,7 +22,7 @@ class Solution {
                 if(count>=2)
                 {
                     int temp = count-1;
-                    System.out.println(count+" "+sum);
+                    //System.out.println(count+" "+sum);
                     sum+=(temp*(temp+1)/2);
                 }
                 count=1;
