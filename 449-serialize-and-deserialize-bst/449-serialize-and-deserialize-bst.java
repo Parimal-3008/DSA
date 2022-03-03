@@ -50,12 +50,9 @@ public class Codec {
         for(int j=s1+1;j<=e1;j++)
             if(arr[j]>arr[s1])
             {
-                TreeNode l =call2(arr,s1+1,j-1);
-                TreeNode r = call2(arr,j,e1);
-               // System.out.println(l.val+" "+r.val);
-                           temp.left = l;
-                temp.right = r;
-               return temp;
+                temp.left = call2(arr,s1+1,j-1);
+                temp.right = call2(arr,j,e1);
+                return temp;
             }       
         temp.left = call2(arr,s1+1,e1);
         return temp;
