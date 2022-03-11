@@ -6,8 +6,30 @@ class Solution {
         for(int i=0;i<m;i++)
             for(int j=0;j<n;j++)
                 dp[i][j]=-1;
-          // System.out.println(m+",,,"+n+"  ");
-        return call(arr,dp,m-1,n-1);
+          dp[0][0]=arr[0][0];
+        for(int i=0;i<m;i++)
+        {
+            for(int j=0;j<n;j++)
+            {
+                if(i==0&&j==0)
+                continue;               
+                int a= arr[i][j];
+                if(i>0)
+                    a+=dp[i-1][j];
+                else
+                    a=10000000;
+                int b= arr[i][j];
+                if(j>0)
+                    b+=dp[i][j-1];
+                else
+                    b=10000000;
+                
+                
+                dp[i][j]=Math.min(a,b);
+            }
+        }
+        return dp[m-1][n-1];
+        //return call(arr,dp,m-1,n-1);
     }
     public int call(int[][] arr, int[][] dp, int i, int j)
     {          
