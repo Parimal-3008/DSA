@@ -4,8 +4,30 @@ class Solution {
         int dp[][] = new int[n][n];
          for(int i=0;i<n;i++)
              for(int j=0;j<n;j++)
-                 dp[i][j]=-1;
+                 dp[i][j]=Integer.MAX_VALUE;
        
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<n;j++)
+            {
+                if(i==0)
+                {dp[i][j]=arr[i][j];continue;}
+                 int a=arr[i][j];int c=arr[i][j];int b=arr[i][j];
+                if(i-1>=0)
+                    a+=dp[i-1][j];
+                else
+                    a+=100000000;
+                if(i-1>=0&&j-1>=0)
+                    b+=dp[i-1][j-1];
+                else
+                    b+=100000000;
+                if(i-1>=0&&j+1<n)
+                    c+=dp[i-1][j+1];
+                else
+                    c+=100000000;
+               dp[i][j]=Math.min(a,Math.min(b,c));
+            }
+        }
         int min=Integer.MAX_VALUE;
         
         for(int i=0;i<n;i++)
