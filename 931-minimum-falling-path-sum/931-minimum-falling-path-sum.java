@@ -13,13 +13,19 @@ class Solution {
             {
                 if(i==n-1)
                 {dp[i][j]=arr[i][j];continue;}
-                int a=Integer.MAX_VALUE;int b=Integer.MAX_VALUE;int c=Integer.MAX_VALUE;
+                int a=arr[i][j];int b=arr[i][j];int c=arr[i][j];
                 if(i+1<n)
-                    a=arr[i][j]+dp[i+1][j];               
+                    a+=dp[i+1][j];
+                else
+                    a+=10000000;
                 if(i+1<n&&j+1<n)
-                    b=arr[i][j]+dp[i+1][j+1];
+                    b+=dp[i+1][j+1];
+                else
+                    b+=10000000;
                 if(i+1<n&&j-1>=0)
-                    c=arr[i][j]+dp[i+1][j-1];
+                    c+=dp[i+1][j-1];
+                else
+                    c+=10000000;
                 dp[i][j]=Math.min(a,Math.min(b,c));
             }
         }
