@@ -33,7 +33,7 @@ class Solution {
         int c=Integer.MAX_VALUE;
         if(ch1==ch2)
             a = call(i+1,j+1,str1,str2,dp);
-        //else
+        else
         {
              b= (int)ch1 + call(i+1,j,str1,str2,dp);
         c= (int)ch2 + call(i,j+1,str1,str2,dp);
