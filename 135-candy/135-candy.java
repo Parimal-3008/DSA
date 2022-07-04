@@ -7,14 +7,14 @@ class Solution {
       {
         if(arr[i]<arr[i+1] && ans[i+1]<=ans[i])
           ans[i+1]=ans[i]+1;
-        else if(arr[1+i]<arr[i]&& ans[i+1]>=ans[i])
-          ans[i]=ans[i+1]+1;
+        // else if(arr[1+i]<arr[i]&& ans[i+1]>=ans[i])
+        //   ans[i]=ans[i+1]+1;
       }
        for(int i=n-2;i>=0;i--)
       {
-        if(arr[i]<arr[i+1] && ans[i+1]<=ans[i])
-          ans[i+1]=ans[i]+1;
-        else if(arr[1+i]<arr[i]&& ans[i+1]>=ans[i])
+        // if(arr[i]<arr[i+1] && ans[i+1]<=ans[i])
+        //   ans[i+1]=ans[i]+1;
+         if(arr[1+i]<arr[i]&& ans[i+1]>=ans[i])
           ans[i]=ans[i+1]+1;
       }
       int sum=0;
