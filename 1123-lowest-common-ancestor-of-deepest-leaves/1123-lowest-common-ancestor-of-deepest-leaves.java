@@ -14,25 +14,52 @@
  * }
  */
 class Solution {
-    int max=-1;
-    TreeNode yo = new TreeNode();        
-    public TreeNode lcaDeepestLeaves(TreeNode root) {
-        call(root,0);
-        return yo;
-    }
-    public int call(TreeNode root,int d)
+  class Node
+  {
+    TreeNode node;int d;
+    public Node(TreeNode node, int d)
     {
-        if(root==null)
-            return d-1;
-        if(d>max)
-        {
-           max=d;
-        }
-        int p= call(root.left,d+1);
-        int q= call(root.right,d+1);
-        if(p==max && q==max)
-            yo=root;
-        return Math.max(p,q);
-        
+      this.node= node;
+      this.d = d;      
     }
+  }
+    public TreeNode lcaDeepestLeaves(TreeNode root) {
+        int arr[]={-1};
+      return call(root,arr,0).node;
+      }
+  public Node call(TreeNode root,int[] arr,int d)
+  {
+    if(root==null)
+      return null;
+    arr[0]=Math.max(arr[0],d);
+    Node l = call(root.left,arr,d+1);
+    Node r = call(root.right,arr,d+1);
+    if(l== null && r== null)
+    {
+      if(d==arr[0])
+        return new Node(root,d);
+      return null;
+    }
+    if(l!=null)
+    {
+      if(r!=null && l.d == arr[0] && r.d==arr[0])
+        return new Node(root,l.d);
+      if(l.d==arr[0])
+        return l;
+      if(r.d==arr[0])
+        return r;
+      return null;        
+    }
+    if(r!=null)
+    {
+      if(l!=null && l.d == arr[0] && r.d==arr[0])
+        return new Node(root,l.d);
+      if(r.d==arr[0])
+        return r;
+      if(l.d ==  arr[0])
+        return l;
+      return null;
+    }
+    return null;
+  }
 }
