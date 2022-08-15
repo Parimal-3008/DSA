@@ -10,29 +10,30 @@
 
 class Solution {
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        int min=0;int max=0;
-        if(p.val<q.val)
-        {
-            max=q.val;
-            min = p.val;
-        }
-        else
-        {
-            min=q.val;
-            max = p.val;
-        }
-        return call(root, min,max);
+      if(p.val>q.val)
+      {
+        TreeNode temp = p;
+        p=q;
+        q = temp;
+      }
+        return call(root,p,q);
     }
-    public TreeNode call(TreeNode root, int min, int max)
-    {
-        if(root == null)
-            return null;
-        if(root.val>=min&& root.val<=max)
-            return root;
-        if(root.val<max)
-            return call(root.right,min,max);
-        else
-            return call(root.left,min,max);
-            
-    }
+  public TreeNode call(TreeNode root,TreeNode p, TreeNode q)
+  {
+    if(root == null)
+      return null;
+    TreeNode l = null;
+    TreeNode r = null;
+    if(root.val==p.val || root.val == q.val)
+         return root;   
+    if(root.val>=p.val && root.val<=q.val)
+      return root;        
+    if(root.val>q.val)
+        return call(root.left,p,q);
+    if(root.val<p.val)
+       return call(root.right,p,q);
+     return null;
+    
+  }
+  
 }
