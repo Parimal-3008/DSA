@@ -15,26 +15,18 @@
  */
 class Solution {
     public List<Integer> rightSideView(TreeNode root) {
-        List<Integer> list = new ArrayList<>();
-      call(root,list,0,new int[01]);
-      return list;
+        List<Integer> l = new ArrayList<>();
+     // l.add(root.val);
+        call(root,01,l);
+      return l;
     }
-  public void call(TreeNode root,List<Integer> list , int curr,int[] depth)
+  public void call(TreeNode root,int d, List<Integer> l)
   {
-    if(root==null)
-      return;
-    if(depth[0]<=curr)
-    { 
-      list.add(root.val);
-      depth[0]++;
-       call(root.right,list,curr+1,depth);
-       call(root.left,list,curr+1,depth);
-    }
-    else
-    {
-      call(root.right,list,curr+1,depth);
-       call(root.left,list,curr+1,depth);
-    }
-    return;
+    if(root == null)
+      return ;
+    if(l.size()<d)
+      l.add(root.val);
+    call(root.right,d+1,l);
+    call(root.left,d+1,l);
   }
 }
