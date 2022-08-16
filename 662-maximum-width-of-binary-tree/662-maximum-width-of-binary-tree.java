@@ -14,42 +14,25 @@
  * }
  */
 class Solution {
-   
-    class Edge
-    {
-        int min;
-        int max;
-        public Edge()
-        {
-            this.min=Integer.MAX_VALUE;
-            this.max=Integer.MIN_VALUE;
-        }
-    }
     public int widthOfBinaryTree(TreeNode root) {
-       Edge arr[] = new Edge[4000];
-         int ind[]= new int[4000];
-        Arrays.fill(ind,Integer.MAX_VALUE);
-        for(int i=0;i<4000;i++)
-            arr[i]=new Edge();
-        dfs(root,1,0,arr,ind);
-        int m= 1;
-        for(int i=1;i<4000;i++)
-           {
-            if(arr[i].max!=Integer.MIN_VALUE&&arr[i].min!=Integer.MAX_VALUE)
-            m=Math.max(m,arr[i].max-arr[i].min+1);
-          }
-       return m;
+        List<Integer> l = new ArrayList<>();
+     
+      int y = call(root,l,0,01);
+     //  System.out.println(l);
+      return y;
+      
     }
-    public void dfs(TreeNode root, int x,int y,Edge arr[],int[] ind)
-    {
-        if(root==null)
-            return;
-        if(ind[y]==Integer.MAX_VALUE)
-            ind[y]=x;
-        arr[y].min=Math.min(x-ind[y], arr[y].min);
-        arr[y].max=Math.max(x-ind[y],arr[y].max);
-        dfs(root.left,2*x,y+1,arr,ind);
-        dfs(root.right,2*x+1,y+1,arr,ind);
-        
-    }
+  public int call(TreeNode root,List<Integer> li , int d,int p)
+  {
+    if(root == null)
+      return 0;
+    
+   // System.out.println(d+".."+p);
+    if(p>li.size())
+      li.add(d-(int)Math.pow(2,p));
+    int l=call(root.left,li,(d-(int)Math.pow(2,p))*2,p+1);
+    int r= call(root.right,li,((d-(int)Math.pow(2,p))*2)+1,p+1);
+   
+    return Math.max(l,Math.max(r,d-(int)Math.pow(2,p)-li.get(p-1)+1));  
+  }
 }
