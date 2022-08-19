@@ -1,9 +1,9 @@
 class SmallestInfiniteSet {
    PriorityQueue<Integer> pq = new PriorityQueue<>();
-   int arr[]= new int[10001];
+   int arr[]= new int[1001];
     public SmallestInfiniteSet() {
         pq  = new PriorityQueue<>();
-      for(int i=1;i<10001;i++)
+      for(int i=1;i<1001;i++)
       {
         pq.add(i);
         arr[i]=1;
