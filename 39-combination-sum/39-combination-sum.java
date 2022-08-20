@@ -1,22 +1,21 @@
 class Solution {
-    public List<List<Integer>> combinationSum(int[] arr, int tar) {
-          List<List<Integer>> list=new LinkedList<>();
-           call(arr,tar,0,list,new LinkedList<>());
-        return list;
+    public List<List<Integer>> combinationSum(int[] arr, int k) {
+        List<List<Integer>> list  = new ArrayList<>();
+        call(arr,k,0,list,new ArrayList<>());
+      return list;
     }
-    public void call(int[] arr,int tar,int n,List<List<Integer>> list,List<Integer> temp)
+  public void call(int[] arr, int k, int i,  List<List<Integer>> list, List<Integer> l)
+  {
+    if(k==0)
     {
-        if(tar==0)
-        {
-           list.add(temp);
-            return;
-        }
-        if(n>=arr.length||tar<0)
-            return;
-         call(arr,tar,n+1,list,new LinkedList<>(temp));
-        temp.add(arr[n]);
-        call(arr,tar-arr[n],n,list,new LinkedList<>(temp));
-        
-       
+        list.add(new ArrayList<>(l));
+      return;
     }
+    if(k<0 || i == arr.length)
+      return;
+    call(arr,k,i+1,list,new ArrayList<>(l));
+    l.add(arr[i]);
+    call(arr,k-arr[i],i,list,new ArrayList<>(l));
+    
+  }
 }
