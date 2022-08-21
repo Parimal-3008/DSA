@@ -1,69 +1,94 @@
 class Solution {
     public List<List<String>> solveNQueens(int n) {
-        char arr[][]= new char[n][n];
-        for(int i=0;i<n;i++)
-            for(int j=0;j<n;j++)
-                arr[i][j]='.';
-        List<List<String>> list = new LinkedList<>();
-        call(arr,0,list);
-        return list;
-    }
-    public void call(char[][] arr, int p,List<List<String>> list  )
-    {
-        int n= arr.length;
-        if( p==n)
-        {
-            
-            List<String> temp = new LinkedList<>();
-            for(int i=0;i<n;i++)
-            {
-                String str="";
-                for(int j=0;j<n;j++)
-                    str+=String.valueOf(arr[i][j]);
-                temp.add(str);
-            }
-            list.add(temp);
-            return;
-        }
-        for(int i=0;i<n;i++)
-        {
-            if(canplace(arr,p,i))
-            {
-                arr[p][i]='Q';
-                call(arr,p+1,list);
-                arr[p][i]='.';
-            }
-        }
-    }
-    public boolean canplace(char[][] arr, int p,int q)
-    {
-        for(int i=0;i<arr.length;i++)
-        {
-            if(arr[p][i]=='Q'&& i!=q)
-                return false;
-        }
-        for(int i=0;i<arr.length;i++)
-        {
-            if(arr[i][q]=='Q'&& i!=p)
-                return false;
-        }
-        int x,y =0;int  n= arr.length;
+        int arr[][]= new int[n][n];
+      List<List<String>> list = new ArrayList<>();
+      
+        call (arr,0,list,n);
         
-        x=p;y=q;
-        while(x>=0&&y<n)
-        {
-            if(arr[x][y]=='Q'&&x!=p&&y!=q)
-                return false;
-            x--;y++;
-        }
-         x=p;y=q;
-        while(x>=0&&y>=0)
-        {
-            if(arr[x][y]=='Q'&&x!=p&&y!=q)
-                return false;
-            x--;y--;
-        }
-     
-        return true;
+      return list;        
     }
+  public void call(int[][] arr,int i,List<List<String>> list,int n)
+  {
+    if(n==0)
+    {
+      List<String> l = new ArrayList<>();
+      for(int p=0;p<arr.length;p++)
+      {
+        String str="";
+           for(int q=0;q<arr.length;q++)
+         {
+             if(arr[p][q]==1)
+             str+= "Q";
+           else
+             str+=".";
+         }
+        l.add(str);
+      }
+      list.add(l);
+    
+      return;     
+    }
+    if(i==arr.length || n<0)
+      return;
+    
+    for(int p=0;p<arr.length;p++)
+    {
+        if(check(i,p,arr))
+        {
+          arr[i][p]=1;
+          call(arr,i+1,list,n-1);
+          arr[i][p]=0;
+        }
+    }    
+  }
+  public boolean check(int i,int j, int arr[][])
+  {
+    for(int p=0;p<arr.length;p++)
+    {
+      if(arr[i][p]==1 || arr[p][j]==1)
+        return false;
+    }
+    int p=1;int n = arr.length;
+    int i1=i;int j1=j;
+    while(i1<n && j1<n)
+    {
+     
+      if(arr[i1][j1]==1)
+        return false;
+       i1+=p;j1+=p;
+      
+    }
+    p=1;j1=j;i1=i;
+    while(i1<n && j1>=0)
+    {
+     
+      if(arr[i1][j1]==1)
+        return false;
+       i1+=p;j1-=p;
+    
+
+    }
+     p=1;j1=j;i1=i;
+    while(i1>=0 && j1>=0)
+    {
+      
+      if(arr[i1][j1]==1)
+        return false;
+      i1-=p;j1-=p;
+     
+
+    }
+     p=1;j1=j;i1=i;
+    while(i1>=0 && j1<n)
+    {
+     
+      if(arr[i1][j1]==1)
+        return false;
+       j1+=p;i1-=p;
+     
+
+    }
+    return true;
+  }
+    
 }
