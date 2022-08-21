@@ -1,35 +1,35 @@
 class Solution {
-    public List<List<String>> partition(String str) {
+    public List<List<String>> partition(String s) {
         List<List<String>> list = new ArrayList<>();
-        call(str,0,list,new ArrayList<>());
-        return list;
+      call(s,0,list,new ArrayList<>());
+      return list;
     }
-    public void call(String str, int p,List<List<String>> list, List<String> temp)
+  public void call(String str, int ind, List<List<String>> list,List<String> l)
+  {
+    if(ind==str.length())
     {
-        if(p==str.length())
-        {
-            list.add(new ArrayList<>(temp));
-            return;
-        }
-        for(int i=p;i<str.length();i++)
-        {
-            if(ispal(str.substring(p,i+1)))
-            {
-                 temp.add(str.substring(p,i+1));
-                call(str,i+1,list,temp);
-                temp.remove(temp.size()-1);
-            }
-        }
+      list.add(new ArrayList<>(l));
+          return;
     }
-    public boolean ispal(String str)
+   for(int i=ind;i<str.length();i++)
+   {
+     if(check(str,ind,i))
+     {
+       l.add(str.substring(ind,i+1));
+       call(str,i+1,list,new ArrayList<>(l));
+       l.remove(l.size()-1);
+     }
+   }
+    
+  }
+  public boolean check(String str,int l , int r)
+  {
+    while(l<=r)
     {
-        int l=0; int r=str.length()-1;
-        while(l<r)
-        {
-            if(str.charAt(l)!=str.charAt(r))
-                return false;
-            l++;r--;
-        }
-        return true;
+      if(str.charAt(l)!=str.charAt(r))
+        return false;
+      l++;r--;
     }
+    return true;
+  }
 }
