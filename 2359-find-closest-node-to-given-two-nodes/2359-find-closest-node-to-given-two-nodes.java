@@ -35,8 +35,8 @@ class Solution {
         curr++;
         node2=arr[node2];
       }
-      System.out.println(mp);
-      System.out.println(mp2);
+      // System.out.println(mp);
+      // System.out.println(mp2);
       
       return ind;
     }
