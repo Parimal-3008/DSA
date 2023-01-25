@@ -13,10 +13,10 @@ class Solution {
       int min = Integer.MAX_VALUE;
       int ind = -1;
       curr=0;
-      Map<Integer,Integer> mp2 = new HashMap<>();
+     Set<Integer> mp2 = new HashSet<>();
        while(node2!=-1)
       {
-         if(mp2.containsKey(node2))
+         if(mp2.contains(node2))
            break;
        if(mp.containsKey(node2))
        {
@@ -31,7 +31,7 @@ class Solution {
          }
        }
          
-         mp2.put(node2,curr);
+         mp2.add(node2);
         curr++;
         node2=arr[node2];
       }
