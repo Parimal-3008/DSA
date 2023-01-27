@@ -30,9 +30,15 @@ class Solution {
       if(mp.get(arr[i-mid])==0)
         mp.remove(arr[i-mid]);
       mp.put(arr[i],mp.getOrDefault(arr[i],0)+1);
-      if(mp.size()<=2)
-        return true;
-      
+      int po=0;
+      for(Map.Entry<Integer,Integer> entry: mp.entrySet())
+      {
+         po++;
+         if(po>=3)
+           break;
+      }
+      if(po == 2)
+        return true;       
     }
     return false;
   }
