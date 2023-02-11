@@ -2,7 +2,7 @@ class Solution {
   class Node
   {
     int n;int color;int wt;
-    public Node(int n,int color, int wt)
+    public Node(int n,int color,int wt)
     {
       this.n = n;
       this.wt = wt;
@@ -46,9 +46,7 @@ class Solution {
           for(int i=0;i<n;i++)
           {
             if(blue[p.n][i]==1 && dist2[p.n]+1<dist[i])
-            {      
-              
-            System.out.println(col+"?"+p.n+"::"+i);
+            {             
                 dist[i]=dist2[p.n]+1;
                 pq.add(new Node(i,2,dist[i]));              
             }
@@ -59,8 +57,7 @@ class Solution {
             for(int i=0;i<n;i++)
           {
             if(red[p.n][i]==1 && dist[p.n]+1<dist2[i])
-            { 
-              System.out.println(p.n+"::"+i);
+            {              
                 dist2[i]=dist[p.n]+1;
                 pq.add(new Node(i,1,dist2[i]));            
             }
@@ -68,16 +65,16 @@ class Solution {
           }
           else
           {
-            for(int i=1;i<n;i++)
+            for(int i=0;i<n;i++)
           {
-           if(blue[0][i]==1 )
+           if(blue[p.n][i]==1 && dist2[p.n]+1<dist[i])
             {             
-                dist[i]=1;
+                dist[i]=dist2[p.n]+1;
                 pq.add(new Node(i,2,dist[i]));              
             }
-              if(red[0][i]==1)
+              if(red[p.n][i]==1 && dist[p.n]+1<dist2[i])
             {              
-                dist2[i]=1;
+                dist2[i]=dist[p.n]+1;
                 pq.add(new Node(i,1,dist2[i]));            
             }
           }
@@ -85,12 +82,12 @@ class Solution {
           }
           
       }
-      for(int i:dist2)
-        System.out.print(i+" ");
-      System.out.println();
-      for(int i:dist)
-        System.out.print(i+" ");
-      System.out.println();
+      // for(int i:dist2)
+      //   System.out.print(i+" ");
+      // System.out.println();
+      // for(int i:dist)
+      //   System.out.print(i+" ");
+      // System.out.println();
       for(int i= 0;i<n;i++)
       {
         dist[i]=Math.min(dist[i],dist2[i]);
