@@ -8,10 +8,8 @@ class Solution {
   public int call(int i, int j,char[] arr1, char[] arr2, int[][] dp )
   {
     if(i==arr1.length)
-    
       return arr2.length-j;
-    
-    if(j==arr2.length)
+     if(j==arr2.length)
       return arr1.length-i;
     if(dp[i][j]!=-1)
       return dp[i][j];
