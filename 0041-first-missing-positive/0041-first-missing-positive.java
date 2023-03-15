@@ -22,9 +22,6 @@ class Solution {
         if(arr[p]>0)
           arr[p]*=(-1);
       }
-      // for(int i:arr)
-      //   System.out.print(i+" ");
-      // System.out.println();
       for(int i=0;i<arr.length;i++)
       {
         if(i!=0 && arr[i]>0)
