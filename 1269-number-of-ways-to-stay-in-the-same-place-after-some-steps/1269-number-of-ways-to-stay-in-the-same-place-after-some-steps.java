@@ -14,29 +14,28 @@ class Solution {
       return 0;    
     if(k<0)
       return 0;
-    int ans =0;
-   
+      int ans =0;   
       int a = 0;
       int b = 0;
       int c =0;
-    int j=0;
+    
     if(dp[i][k]!=-1)
       return dp[i][k];
       if(i==0)
       {
-        a = call(i+1,k-j-1,n,dp);
-        b = call(i,k-j-1,n,dp);
+        a = call(i+1,k-1,n,dp);
+        b = call(i,k-1,n,dp);
       }
       else if(i==n-1)
       {
-        a = call(i-1,k-j-1,n,dp);
-        b = call(i,k-j-1,n,dp);
+        a = call(i-1,k-1,n,dp);
+        b = call(i,k-1,n,dp);
       }
       else
       {
-        a = call(i-1,k-j-1,n,dp);
-        b = call(i,k-j-1,n,dp);
-        c = call(i+1,k-j-1,n,dp);
+        a = call(i-1,k-1,n,dp);
+        b = call(i,k-1,n,dp);
+        c = call(i+1,k-1,n,dp);
       }
       ans += (((a+b)%mod)+c)%mod;
       while(ans<0)
