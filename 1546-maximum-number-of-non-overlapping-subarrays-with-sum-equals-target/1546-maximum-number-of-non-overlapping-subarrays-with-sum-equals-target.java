@@ -10,12 +10,9 @@ class Solution {
         sum+=arr[i];
         if(mp.containsKey(sum-k))
            {
-             int ind = mp.get(sum-k);
-             if(ind+1>prev)
-             {
-               prev = i+1;
-               ans++;
-             }
+             ans++;
+             sum =0;
+          mp=new HashMap<>();
            }
       
           mp.put(sum,i+1);
