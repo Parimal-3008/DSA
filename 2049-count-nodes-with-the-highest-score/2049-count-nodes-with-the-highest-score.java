@@ -22,7 +22,7 @@ class Solution {
       }
      long max = 1;
       int ans2= 0;
-      System.out.println(list2);
+      // System.out.println(list2);
       for(int i=0;i<parents.length;i++)
       {
         long curr = 1;
@@ -51,7 +51,7 @@ class Solution {
         }
         
       }
-      System.out.println(max);
+      // System.out.println(max);
       return ans2;
       
     }
