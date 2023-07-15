@@ -11,7 +11,7 @@ class Solution {
             long temp =  right[i]*left[i];
             temp= (temp*(long)arr[i])%mod;
             ans = (ans+temp)%mod;
-            while(ans<0)
+            if(ans<0)
                 ans+=mod;
         }
         return (int)ans;        
