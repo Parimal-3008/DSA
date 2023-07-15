@@ -1,26 +1,34 @@
 class StockSpanner {
-      class Edge
-      {
-          int price; int curr;
-          public Edge(int price, int curr)
-          {
-              this.price = price;
-              this.curr = curr;
-          }
-      }
-    Stack<Edge> st = new Stack<>();
+   class Edge
+   {
+       int val;int freq;
+       public Edge(int val,int freq)
+       {
+           this.val=val;
+           this.freq= freq;
+       }
+   }
+    Stack<Edge> st = null;
     public StockSpanner() {
         st = new Stack<>();
     }
     
     public int next(int price) {
-        int ans = 1;
-        while(!st.isEmpty() && st.peek().price<=price)
+          Edge e = new Edge(price,1);
+        while(!st.isEmpty())
         {
-            ans+=st.pop().curr;
+            if(st.peek().val>price)
+                break;
+            else
+            {
+                e.freq+=st.peek().freq;
+                st.pop();
+            }
         }
-        st.push(new Edge(price,ans));
-        return ans;
+        st.push(e);
+        return e.freq;
+      
+        
     }
 }
 
