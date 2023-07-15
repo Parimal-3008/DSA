@@ -2,18 +2,10 @@ class Solution {
     public int sumSubarrayMins(int[] arr) {
        int[] right = new int[arr.length];
         int[] left = new int[arr.length];
-        // Arrays.fill(right,arr.length);
-        // Arrays.fill(left,-1);
         call1(arr,right);
-        call2(arr,left);
-        
+        call2(arr,left);        
         long ans = 0;
         long mod = 1000000007;
-        // for(int i:left)
-        //     System.out.print(i+" ");
-        // System.out.println();
-        // for(int i:right)
-        //     System.out.print(i+" ");
         for(int i=0;i<arr.length;i++)
         {
             long temp =  right[i]*left[i];
