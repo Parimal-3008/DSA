@@ -1,4 +1,4 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 import java.util.*;
 import java.lang.*;
 import java.io.*;
@@ -28,55 +28,36 @@ class GFG {
                 System.out.println("0");
         }
     }
-}// } Driver Code Ends
+}
+// } Driver Code Ends
 
 
 class Solution {
-    static class Edge
-    {
-        int n;int parent;
-        public Edge(int n,int parent)
-        {
-            this.n=n;
-            this.parent=parent;
-        }
-    }
     // Function to detect cycle in an undirected graph.
-    public  boolean isCycle(int V, ArrayList<ArrayList<Integer>> l) {
-        boolean visited[] = new boolean[V];
-        Arrays.fill(visited,false);
+    public boolean isCycle(int V, ArrayList<ArrayList<Integer>> adj) {
+        // Code here
+        boolean vis[]= new boolean[V+1];
         for(int i=0;i<V;i++)
         {
-            if(!visited[i])
-            {
-                if(check(i,visited,l))
-                return true;
-            }
+            if(!vis[i] && call(i,vis,adj,-1))
+            return true;
         }
         return false;
-        // Code here
     }
-    public static boolean check(int i, boolean[] visited,ArrayList<ArrayList<Integer>> l )
+    public static boolean call(int i, boolean[] vis,ArrayList<ArrayList<Integer>> list, int prev )
     {
-        Stack<Edge> q = new Stack<>();
-        q.push(new Edge(i,-1));
-        while(!q.isEmpty())
+        vis[i]=true;
+        for(int j:list.get(i))
         {
-            Edge e = q.pop();
-            visited[e.n]=true;
-            for(int j: l.get(e.n))
+            if(prev == j)
+            continue;
+            if(!vis[j])
             {
-                if(!visited[j])
-                {
-                    q.push(new Edge(j,e.n));
-                    visited[e.n]=true;
-                }
-                else
-                {
-                    if(e.parent!=j)
-                    return true;
-                }
+                if(call(j,vis,list,i))
+                return true;
             }
+            else
+            return true;
         }
         return false;
     }
