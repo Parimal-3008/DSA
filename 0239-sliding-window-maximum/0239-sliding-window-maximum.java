@@ -5,7 +5,7 @@ class Solution {
         for(int i=0;i<n;i++)
         {
             dp[i][0]=arr[i];
-            dp[i][1]=i;
+            
             dp[i][2]=0;
         }
         int[] ans = new int[n-k+1];
