@@ -1,43 +1,25 @@
 class Solution {
-     public int minDeletions(String str) {
-        int arr[]= new int[26];
-       for(int i=0;i<str.length();i++)
-       {
-         char ch = str.charAt(i);
-         arr[ch -'a']++;
-       }
-        PriorityQueue<Integer> pq= new PriorityQueue<Integer>(new Comparator<Integer>() {                   
-                    // Compare method for place element in
-                    // reverse order
-                    public int compare(Integer a, Integer b)
-                    {
-                        if (a < b)
-                            return 1;
-                        else
-                            return -1;
-                        
-                    }
-                });
-       for(int i:arr)
-       {
-         if(i!=0)
-           pq.add(i);
-       }
-       int prev = pq.poll(); int ans=0;
-       while(pq.size()>0)
+    public int minDeletions(String str) {
+       int[] arr= new int[26];
+        for(int i=0;i<str.length();i++)
+            arr[str.charAt(i)-'a']++;
+        Arrays.sort(arr);
+        int ans=0;
+        Set<Integer> set = new HashSet<>();
+        for(int i=25;i>=0;i--)
         {
-         int curr = pq.poll();         
-         if(prev == curr)
-         {
-           ans++;
-           curr--;
-           if(curr!=0)
-           pq.add(curr);
-         }
-         else
-           prev=curr;
-         //System.out.println(pq.poll());
-       }      
-       return ans;
+            if(arr[i]==0)
+                break;
+            if(!set.contains(arr[i]))
+                set.add(arr[i]);
+            else
+            {
+                while(set.contains(arr[i]) && arr[i]>0)
+                   { arr[i]--;ans++;}
+                set.add(arr[i]);
+                
+            }
+        }
+        return ans;
     }
 }
