@@ -25,17 +25,5 @@ class Solution {
         }
         return ans;
     }
-    public boolean check(int[] arr)
-    {
-        // for(int i:arr)
-        //     System.out.print(i+" ");
-        // System.out.println();
-        for(int i=0;i<arr.length;i++)
-        {
-            if(arr[i]%(i+1)==0 ||(i+1)%arr[i]==0)
-                continue;
-            return false;
-        }
-        return true;
-    }
+   
 }
