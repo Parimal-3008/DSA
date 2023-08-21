@@ -1,7 +1,12 @@
 class Solution {
     int[][][] dp = new int[101][101][101];
+    int[][] dp2= new int[1][1];
     public int palindromePartition(String str, int k) {
         dp= new int[str.length()+1][str.length()+1][str.length()+1];
+        dp2= new int[str.length()+1][str.length()+1];
+        for(int i[]:dp2)
+            Arrays.fill(i,-1);
+       
         for(int i[][]:dp)
             for(int j[]:i)
             Arrays.fill(j,-1);
@@ -27,7 +32,9 @@ class Solution {
     {
         int ans = 0;
          // System.out.print(i+" "+j+" ");
-       
+       if(dp2[i][j]!=-1)
+           return dp2[i][j];
+        int p = i;int q= j;
         while(i<=j)
         {
             if(str.charAt(i)!=str.charAt(j))
@@ -36,6 +43,6 @@ class Solution {
         }
         // System.out.print(ans);
         // System.out.println();
-        return ans;
+        return dp2[p][q]=ans;
     }
 }
