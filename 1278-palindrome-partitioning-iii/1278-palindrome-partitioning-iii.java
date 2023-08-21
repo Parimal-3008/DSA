@@ -1,6 +1,7 @@
 class Solution {
     int[][][] dp = new int[101][101][101];
     public int palindromePartition(String str, int k) {
+        dp= new int[str.length()+1][str.length()+1][str.length()+1];
         for(int i[][]:dp)
             for(int j[]:i)
             Arrays.fill(j,-1);
