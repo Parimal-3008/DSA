@@ -3,7 +3,7 @@ class Solution {
         Set<String> set = new HashSet<>();
         for(String i: dict)
             set.add(i);
-        int dp[][]= new int[101][101];
+        int dp[][]= new int[51][51];
         for(int i[]:dp)
             Arrays.fill(i,-1);
        return call(set,0,1,s,dp);
