@@ -13,7 +13,8 @@ class Solution {
             int i = temp[0];
             int j = temp[1];
             int k = temp[2];
-            // if(i==m-1 && j==n-1)
+            if(i==m-1 && j==n-1)
+                return dp[i][j];
             if(i+1<m)
             {
                 if(arr[i][j]==3 && dp[i+1][j]>dp[i][j])
