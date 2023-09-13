@@ -12,12 +12,13 @@ class Solution {
         for(int i=0;i<arr.length;i++)
             str+="1";
         int len = Integer.parseInt(str,2);
-        int[] dp = new int[len];
-        Arrays.fill(dp,-1);
+        int[][] dp = new int[len][arr.length+1];
+        for(int i[]:dp)
+        Arrays.fill(i,-1);
         Arrays.fill(cp,'0');
         return call(arr,1,cp,dp);
         }
-    public int call(int[] arr, int i, char[] st,int[] dp)
+    public int call(int[] arr, int i, char[] st,int[][] dp)
     {
         String str = String.valueOf(st);
          // System.out.println(i+" "+str);
@@ -25,8 +26,8 @@ class Solution {
             return 0;
         int max = 0;
        int len = Integer.parseInt(str,2);
-        if(dp[len]!=-1)
-            return dp[len];
+        if(dp[len][i]!=-1)
+            return dp[len][i];
         for(int p=0;p<arr.length;p++)
         {
             if(st[p]=='1')
@@ -46,6 +47,6 @@ class Solution {
             }
         }
         // System.out.println(str+" "+max);
-        return dp[len]=max;
+        return dp[len][i]=max;
     }
 }
